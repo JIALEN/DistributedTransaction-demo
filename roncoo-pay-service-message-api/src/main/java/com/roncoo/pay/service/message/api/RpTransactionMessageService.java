@@ -15,18 +15,14 @@ import com.roncoo.pay.common.core.page.PageParam;
 import com.roncoo.pay.service.message.entity.RpTransactionMessage;
 import com.roncoo.pay.service.message.exceptions.MessageBizException;
 
-/**
- * <b>功能说明: </b>
- * @author Peter <a href="http://www.roncoo.com">龙果学院(www.roncoo.com)</a>
- */
+
 public interface RpTransactionMessageService {
 
 	/**
 	 * 预存储消息. 
 	 */
 	public int saveMessageWaitingConfirm(RpTransactionMessage rpTransactionMessage) throws MessageBizException;
-	
-	
+
 	/**
 	 * 确认并发送消息.
 	 * 主动方应用确认业务操作成功，消息服务将消息状态可发送，并发送消息

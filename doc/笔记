@@ -1,0 +1,13 @@
+1.roncoo-pay-web-gateway  预支付页面
+com.roncoo.pay.controller.ScanPayController#initPay
+
+2.roncoo-pay-web-gateway---支付网关
+com.roncoo.pay.controller.ScanPayNotifyController#result
+
+3.roncoo-pay-service-trade--交易服务
+com.roncoo.pay.service.trade.aip.impl.RpTradePaymentManagerServiceImpl#completeScanPay
+
+4.roncoo-pay-service-message-----消息服务子系统
+com.roncoo.pay.service.message.api.RpTransactionMessageService#saveMessageWaitingConfirm-----saveMessageWaitingConfirm
+
+http://blog.csdn.net/u014401141/article/category/6871846

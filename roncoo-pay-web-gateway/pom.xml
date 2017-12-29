@@ -22,7 +22,7 @@
 	<packaging>war</packaging>
 
 	<name>roncoo-pay-web-gateway</name>
-	<description>龙果支付系统--支付网关</description>
+	<description>支付网关</description>
 	<url>http://www.roncoo.com</url>
 
 	<organization>

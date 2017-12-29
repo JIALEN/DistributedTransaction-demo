@@ -15,7 +15,7 @@
 	<groupId>com.roncoo.pay.service</groupId>
 	<artifactId>roncoo-pay-service-message</artifactId>
 	<name>roncoo-pay-service-message</name>
-	<description>龙果支付系统--消息日志服务</description>
+	<description>消息服务子系统</description>
 	<url>http://www.roncoo.com</url>
 
 	<organization>
