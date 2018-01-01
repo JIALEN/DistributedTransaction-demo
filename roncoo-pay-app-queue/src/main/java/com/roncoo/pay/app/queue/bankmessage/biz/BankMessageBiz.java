@@ -39,7 +39,7 @@ public class BankMessageBiz {
         String payWayCode = notifyMessageMap.get("payWayCode");
         //调用业务方法,完成交易
         try{
-
+            //交易服务消费端监听业务操作，完成交易，调用可靠消息服务将记录改为完成
             rpTradePaymentManagerService.completeScanPay(payWayCode, notifyMessageMap);
 
             //删除消息

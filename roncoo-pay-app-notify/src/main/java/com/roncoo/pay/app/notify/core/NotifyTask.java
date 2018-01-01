@@ -27,9 +27,8 @@ import com.roncoo.pay.service.notify.enums.NotifyStatusEnum;
 
 /**
  * @功能说明: 通知任务类.
- * @创建者: Peter
- * @创建时间: 16/6/2  下午5:34
- * @公司名称:广州市领课网络科技有限公司 龙果学院(www.roncoo.com)
+   DelayQueue：是一个支持延时获取元素的使用优先级队列的实现的无界阻塞队列。
+  队列中的元素必须实现Delayed接口和Comparable接口，也
  * @版本:V1.0
  */
 public class NotifyTask implements Runnable, Delayed {

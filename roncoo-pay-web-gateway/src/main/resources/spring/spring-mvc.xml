@@ -10,12 +10,7 @@
                         http://www.springframework.org/schema/mvc  
                         http://www.springframework.org/schema/mvc/spring-mvc-3.2.xsd">
 
-	<!-- ==================================================================== -->
-	<!-- 龙果学院 (www.roncoo.com) 超级教程系列 -->
-	<!-- 《微服务架构的分布式事务解决方案》视频教程 -->
-	<!-- 讲师：吴水成（水到渠成），840765167@qq.com -->
-	<!-- 课程地址：http://www.roncoo.com/course/view/7ae3d7eddc4742f78b0548aa8bd9ccdb -->
-	<!-- ==================================================================== -->
+
 
 	<!-- 自动扫描该包，使SpringMVC认为包下用了@controller注解的类是控制器 -->
 	<context:component-scan base-package="com.roncoo.pay.controller" />

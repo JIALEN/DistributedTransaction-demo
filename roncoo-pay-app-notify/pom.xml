@@ -4,12 +4,6 @@
 	xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
 	<modelVersion>4.0.0</modelVersion>
 
-	<!-- ==================================================================== -->
-	<!-- 龙果学院（ http://www.roncoo.com ）超级教程系列 -->
-	<!-- 《微服务架构的分布式事务解决方案》视频教程 -->
-	<!-- 讲师：吴水成（水到渠成），840765167@qq.com -->
-	<!-- 课程地址：http://www.roncoo.com/course/view/7ae3d7eddc4742f78b0548aa8bd9ccdb -->
-	<!-- ==================================================================== -->
 
 	<parent>
 		<groupId>com.roncoo.pay.common</groupId>
@@ -23,7 +17,7 @@
 	<packaging>jar</packaging>
 
 	<name>roncoo-pay-app-notify</name>
-	<description>最大努力通知方案</description>
+	<description>最大努力通知方案--消息监听，调用通知服务进行消息数据的持久化，调用业务查询接口定时有策略的轮询重发，更新消息状态</description>
 	<url>http://www.roncoo.com</url>
 
 	<organization>

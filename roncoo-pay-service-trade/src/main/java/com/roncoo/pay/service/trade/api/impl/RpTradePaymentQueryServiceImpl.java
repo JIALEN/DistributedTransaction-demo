@@ -6,7 +6,7 @@
  * 课程地址：http://www.roncoo.com/course/view/7ae3d7eddc4742f78b0548aa8bd9ccdb
  * ====================================================================
  */
-package com.roncoo.pay.service.trade.aip.impl;
+package com.roncoo.pay.service.trade.api.impl;
 
 import java.util.HashMap;
 import java.util.List;

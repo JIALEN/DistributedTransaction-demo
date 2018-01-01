@@ -2,13 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.roncoo.pay.service.accounting.dao.impl.RpAccountingVoucherDaoImpl">
 
-	<!-- ==================================================================== -->
-	<!-- 龙果学院（ http://www.roncoo.com ）超级教程系列 -->
-	<!-- 《微服务架构的分布式事务解决方案》视频教程 -->
-	<!-- 讲师：吴水成（水到渠成），840765167@qq.com -->
-	<!-- 课程地址：http://www.roncoo.com/course/view/7ae3d7eddc4742f78b0548aa8bd9ccdb -->
-	<!-- ==================================================================== -->
-	
+
 	<!-- 表名 -->
 	<sql id="table"> rp_accounting_voucher </sql>
 	

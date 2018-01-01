@@ -29,9 +29,6 @@ import com.roncoo.pay.service.trade.enums.TradeStatusEnum;
 /**
  * message业务处理类
  *
- * 龙果学院：www.roncoo.com
- * 
- * @author：shenjialong
  */
 @Component("messageBiz")
 public class MessageBiz {
@@ -45,8 +42,7 @@ public class MessageBiz {
 
 	/**
 	 * 处理[waiting_confirm]状态的消息
-	 * 
-	 * @param messages
+	 * @param messageMap
 	 */
 	public void handleWaitingConfirmTimeOutMessages(Map<String, RpTransactionMessage> messageMap) {
 		log.debug("开始处理[waiting_confirm]状态的消息,总条数[" + messageMap.size() + "]");
@@ -78,8 +74,7 @@ public class MessageBiz {
 
 	/**
 	 * 处理[SENDING]状态的消息
-	 * 
-	 * @param messages
+	 * @param messageMap
 	 */
 	public void handleSendingTimeOutMessage(Map<String, RpTransactionMessage> messageMap) {
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");

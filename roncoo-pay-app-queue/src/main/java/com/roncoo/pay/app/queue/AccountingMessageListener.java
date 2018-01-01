@@ -89,7 +89,7 @@ public class AccountingMessageListener implements SessionAwareMessageListener<Me
 				receiverChangeAmount, income, cost, profit, bankChangeAmount, requestNo, bankChannelCode, bankAccount, fromSystem, remark, bankOrderNo,
 				payerAccountType, payAmount, receiverAccountType, payerFee, receiverFee);
 
-			//删除消息
+			//删除消息   一个分布式事物完成
 			rpTransactionMessageService.deleteMessageByMessageId(param.getMessageId());
 
 		} catch (BizException e) {

@@ -1,3 +1,22 @@
+roncoo-pay-service-accounting 积分服务
+RpAccountingVoucherServiceImpl
+
+roncoo-pay-service-account  支付系统--帐户服务
+
+roncoo-pay-service-user     支付系统--用户服务
+
+roncoo-pay-service-notify     支付系统--通知服务
+
+roncoo-pay-service-message  消息服务子系统
+
+roncoo-pay-service-trade-----支付系统--交易服务
+
+roncoo-pay-app-message----------消息状态确认子系统及消息恢复子系统
+
+roncoo-pay-app-notify   最大努力通知方案--消息监听 调用通知服务进行消息数据的持久化，调用业务查询接口定时有策略的轮询重发，更新消息状态
+roncoo-pay-service-notify   最大努力通知方案---最大努力通知方案---通知服务主要通知信息存储，更新，更实时消息没关系
+
+
 1.roncoo-pay-web-gateway  预支付页面
 com.roncoo.pay.controller.ScanPayController#initPay
 
@@ -5,9 +24,71 @@ com.roncoo.pay.controller.ScanPayController#initPay
 com.roncoo.pay.controller.ScanPayNotifyController#result
 
 3.roncoo-pay-service-trade--交易服务
-com.roncoo.pay.service.trade.aip.impl.RpTradePaymentManagerServiceImpl#completeScanPay
+RpTradePaymentManagerServiceImpl#completeScanPay
 
 4.roncoo-pay-service-message-----消息服务子系统
 com.roncoo.pay.service.message.api.RpTransactionMessageService#saveMessageWaitingConfirm-----saveMessageWaitingConfirm
 
 http://blog.csdn.net/u014401141/article/category/6871846
+
+
+启动时报： javax.validation.ValidationException: Unable to create a Configuration, because no Bean Validation
+解决：http://blog.csdn.net/qq_30679953/article/details/72940301
+
+
+1.com.roncoo.test.MainTest--模拟支付入口
+
+   ---2.com.roncoo.test.MainTest.getInitRequestMap  构建支付请求参数
+
+预支付
+--------------3.com.roncoo.pay.controller.ScanPayController.initPay
+
+4.创建订单记录
+-----------------------com.roncoo.pay.service.trade.api.impl.RpTradePaymentManagerServiceImpl.initDirectScanPay
+
+------------------------------5.weixinPayScanPay  调到微信支付页面
+
+----------------------------------6.模拟构建银行扣款成功结果通知  com.roncoo.pay.controller.ScanPayNotifyController.notify
+                      -------------------------------------com.roncoo.pay.service.message.api.impl.RpTransactionMessageServiceImpl.saveAndSendMessage 保存发送消息
+
+--------------------------------------------------------- 通知商户  com.roncoo.pay.service.trade.api.impl.RpTradePaymentManagerServiceImpl.getMerchantNotifyMessage
+---------------------------------------------------------------------------7.com.roncoo.pay.app.queue.bankmessage.BankMessageTask.run  监听消息
+------------------------------------------------------------------------------               com.roncoo.pay.app.queue.bankmessage.biz.BankMessageBiz.completePay  调用交易完成交易
+  ----------------------------------------------------------------------------                                           //调用可靠消息服务，预发送消息
+------------------------------------------------------------------------------                                               rpTransactionMessageService.saveMessageWaitingConfirm(rpTransactionMessage);
+---------------------------------------------------------------------------                                               //订单处理，调用账号服务处理
+-------------------------------------------------------------------------------                                               completeSuccessOrder(rpTradePaymentRecord, bankTrxNo, timeEnd, bankReturnMsg);
+----------------------------------------------------------------------------                                               //调用可靠消息服务将状态改为完成
+------------------------------------------------------------------------------                                               rpTransactionMessageService.confirmAndSendMessage(rpTransactionMessage.getMessageId());
+------------------------------------------------------------------------------                 com.roncoo.pay.service.message.api.RpTransactionMessageService.deleteMessageByMessageId   调用可靠消息服务完成一致性一次调用
+
+
+
+roncoo-pay-app-message----------消息状态确认子系统及消息恢复子系统
+com.roncoo.pay.app.message.scheduled.MessageScheduled
+就是两个定时任务
+
+测试场景：
+订单服务故障
+会计服务故障
+mq故障
+
+roncoo-pay-app-notify   最大努力通知方案--消息监听 调用通知服务进行消息数据的持久化，调用业务查询接口定时有策略的轮询重发，更新消息状态
+roncoo-pay-service-notify   最大努力通知方案---最大努力通知方案---通知服务主要通知信息存储，更新，更实时消息没关系
+
+测试：
+com.roncoo.pay.controller.ScanPayNotifyController.notify
+                    ----------com.roncoo.pay.service.message.api.RpTransactionMessageService.directSendMessage 发送消息
+                    --------- com.roncoo.pay.app.notify.listener.ConsumerSessionAwareMessageListener.onMessage  监听消息
+                    ---------com.roncoo.pay.service.notify.api.RpNotifyService.createNotifyRecord   消息持久化
+
+http://localhost:8083/roncoo-pay-web-sample-shop/
+
+http://localhost:8085/roncoo-pay-web-message/login/index
+
+http://localhost:8084/login/index
+
+http://localhost:8082/roncoo-pay-web-gateway/
+
+
+http://localhost:8161/admin  mq管控台

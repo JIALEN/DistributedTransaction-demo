@@ -2,13 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.roncoo.pay.service.message.dao.impl.RpTransactionMessageDaoImpl">
 
-	<!-- ==================================================================== -->
-	<!-- 龙果学院（ http://www.roncoo.com ）超级教程系列 -->
-	<!-- 《微服务架构的分布式事务解决方案》视频教程 -->
-	<!-- 讲师：吴水成（水到渠成），840765167@qq.com -->
-	<!-- 课程地址：http://www.roncoo.com/details/7ae3d7eddc4742f78b0548aa8bd9ccdb -->
-	<!-- ==================================================================== -->
-	
+
 	<sql id="table_name"> rp_transaction_message </sql>
 
 	<resultMap id="BaseResultMap" type="com.roncoo.pay.service.message.entity.RpTransactionMessage">

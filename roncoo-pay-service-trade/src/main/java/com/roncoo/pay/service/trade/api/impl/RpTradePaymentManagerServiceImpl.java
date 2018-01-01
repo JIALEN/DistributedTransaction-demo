@@ -6,7 +6,7 @@
  * 课程地址：http://www.roncoo.com/course/view/7ae3d7eddc4742f78b0548aa8bd9ccdb
  * ====================================================================
  */
-package com.roncoo.pay.service.trade.aip.impl;
+package com.roncoo.pay.service.trade.api.impl;
 
 import com.alibaba.fastjson.JSONObject;
 import com.roncoo.pay.common.core.enums.NotifyDestinationNameEnum;
@@ -178,7 +178,7 @@ public class RpTradePaymentManagerServiceImpl implements RpTradePaymentManagerSe
             }
         }
 
-        // 通过支付订单及商户费率生成支付记录
+        // 通过支付订单及商户费率生成支付记录         一个支付单有多个支付记录
         return getScanPayResultVo(rpTradePaymentOrder , payWay);
 
     }
@@ -269,15 +269,17 @@ public class RpTradePaymentManagerServiceImpl implements RpTradePaymentManagerSe
         	
             LOG.info("==>开始处理支付成功的订单结果");
             RpTransactionMessage rpTransactionMessage = sealRpTransactionMessage(rpTradePaymentRecord); // 封装会计原始凭证数据
+            //调用可靠消息服务，预发送消息
             rpTransactionMessageService.saveMessageWaitingConfirm(rpTransactionMessage);
             LOG.info("==>保存消息数据");
 
             try {
+                //订单处理，调用账号服务处理
                 completeSuccessOrder(rpTradePaymentRecord, bankTrxNo, timeEnd, bankReturnMsg);
             } catch (Exception e) {
                 throw new TradeBizException(TradeBizException.TRADE_SYSTEM_ERROR,"交易系统异常,处理支付结果失败");
             }
-            
+            //调用可靠消息服务将状态改为完成
             rpTransactionMessageService.confirmAndSendMessage(rpTransactionMessage.getMessageId());
             LOG.info("==>修改消息状态");
             

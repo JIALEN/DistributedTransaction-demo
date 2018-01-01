@@ -15,7 +15,7 @@
 	<packaging>jar</packaging>
 
 	<name>roncoo-pay-app-queue</name>
-	<description>实时通知服务</description>
+	<description>服务监听消费端</description>
 	<url>http://www.roncoo.com</url>
 
 	<organization>

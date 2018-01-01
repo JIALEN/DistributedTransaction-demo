@@ -80,6 +80,15 @@
 			<version>5.11.4</version>
 		</dependency>
 
+		<!--解決這個異常： javax.validation.ValidationException:
+                Unable to create a Configuration, because no Bean Validation
+                  -->
+		<dependency>
+			<groupId>org.apache.bval</groupId>
+			<artifactId>bval-jsr303</artifactId>
+			<version>0.5</version>
+		</dependency>
+
 		<dependency>
 			<groupId>junit</groupId>
 			<artifactId>junit</artifactId>

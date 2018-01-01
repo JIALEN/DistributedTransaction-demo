@@ -2,12 +2,6 @@
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 
-	<!-- ==================================================================== -->
-	<!-- 龙果学院（ http://www.roncoo.com ）超级教程系列 -->
-	<!-- 《微服务架构的分布式事务解决方案》视频教程 -->
-	<!-- 讲师：吴水成（水到渠成），840765167@qq.com -->
-	<!-- 课程地址：http://www.roncoo.com/course/view/7ae3d7eddc4742f78b0548aa8bd9ccdb -->
-	<!-- ==================================================================== -->
 
 	<parent>
 		<groupId>com.roncoo.pay.common</groupId>
@@ -186,6 +180,15 @@
 			<groupId>junit</groupId>
 			<artifactId>junit</artifactId>
 			<scope>test</scope>
+		</dependency>
+
+		<!--解決這個異常： javax.validation.ValidationException:
+                Unable to create a Configuration, because no Bean Validation
+                  -->
+		<dependency>
+			<groupId>org.apache.bval</groupId>
+			<artifactId>bval-jsr303</artifactId>
+			<version>0.5</version>
 		</dependency>
 	</dependencies>
 

@@ -149,7 +149,7 @@ public class ScanPayController extends BaseController {
                         , notifyUrl, remark, field1, field2, field3, field4, field5);
             }else {
             	
-            	// TEST_PAY_HTTP_CLIENT
+            	// TEST_PAY_HTTP_CLIENT   去创建订单
                 ScanPayResultVo scanPayResultVo = rpTradePaymentManagerService.initDirectScanPay(payKey, productName, orderNo, orderDate, orderTime, orderPrice, payWayCode, orderIp, orderPeriod, returnUrl
                         , notifyUrl, remark, field1, field2, field3, field4, field5);
 

@@ -90,7 +90,7 @@ public class ScanPayNotifyController {
             rpTradePaymentManagerService.verifyNotify(payWayCode, notifyMap);
         }
 
-        // 订单处理消息
+        // 订单处理消息   这里没有预处理直接调用保存并发送信息接口
         String messageId = StringUtil.get32UUID();
         notifyMap.put("payWayCode", payWayCode);
         notifyMap.put("messageId", messageId);
@@ -100,10 +100,12 @@ public class ScanPayNotifyController {
 
         // 通知商户
         if (saveSendMessage > 0){
+            //得到发送商户消息信息及url
             String merchantNotifyUrl = rpTradePaymentManagerService.getMerchantNotifyMessage(payWayCode, notifyMap);
             LOG.info("发送商户消息日志：" + merchantNotifyUrl);
             String notifyMessageId = StringUtil.get32UUID();
             RpTransactionMessage notifyTransactionMessage = new RpTransactionMessage(notifyMessageId, merchantNotifyUrl, NotifyDestinationNameEnum.MERCHANT_NOTIFY.name());
+            //发送消息
             rpTransactionMessageService.directSendMessage(notifyTransactionMessage);
 
         }
